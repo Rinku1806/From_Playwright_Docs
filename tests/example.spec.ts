@@ -1,6 +1,9 @@
 import { test, expect } from "playwright/test";
 import path from "path";
 
+// Locators are the central piece of Playwright's auto-waiting and retry-ability.
+// A locator can be created with the page.locator() method
+
 
 test.beforeAll("Start run of example.spec.ts", async ({}) => {
   console.log('The run for module example.spec.ts is started');
@@ -23,8 +26,7 @@ test.describe("Playwright Doc", () => {
     ).toBeVisible();
   });
 });
-// Locators are the central piece of Playwright's auto-waiting and retry-ability.
-// A locator can be created with the page.locator() method
+
 
 test.describe("Test Automation Hub", () => {
   test.beforeEach("Set up Test Automation Hub", async ({ page }) => {
