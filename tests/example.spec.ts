@@ -96,7 +96,7 @@ test("herokuapp - SetInputFiles()", async ({ page }) => {
 
   await page
     .getByRole("button", { name: "Choose File" })
-    .setInputFiles("C:\\Users\\MSI\\Downloads\\Trading_in_the_Zone.pdf");
+    .setInputFiles("testdata/Trading_in_the_Zone.pdf"); 
   await expect(uploadButton).toBeEnabled();
   await uploadButton.click();
   await expect(page.locator("#content div h3")).toContainText("File Upload");

@@ -67,7 +67,7 @@ test('Recorded by codegen test 3', async ({ page }) => {
     page.getByRole('button', { name: 'Choose File' }).click()  // Trigger it
   ]);
       
-  await fileChooser.setFiles("C:\\Users\\MSI\\Downloads\\Trading_in_the_Zone.pdf");    
+  await fileChooser.setFiles("testdata/Trading_in_the_Zone.pdf");    
   await expect(page.getByTestId('upload-status')).toContainText('100% uploaded');
   
 });
