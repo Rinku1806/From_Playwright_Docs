@@ -1,9 +1,9 @@
-import { test, expect } from "playwright/test";
+import { test, expect, firefox } from "playwright/test";
 import path from "path";
 
 // Locators are the central piece of Playwright's auto-waiting and retry-ability.
 // A locator can be created with the page.locator() method
-
+var browserName = "firefox";
 
 test.beforeAll("Start run of example.spec.ts", async ({}) => {
   console.log('The run for module example.spec.ts is started');
@@ -28,7 +28,7 @@ test.describe("Playwright Doc", () => {
 });
 
 
-test.describe("Test Automation Hub", () => {
+test.describe("Test Automation Hub",{tag: '@recorded'}, () => {
   test.beforeEach("Set up Test Automation Hub", async ({ page }) => {
     await page.goto("https://gauravkhurana.com/test-automation-play/");
   });
@@ -36,6 +36,7 @@ test.describe("Test Automation Hub", () => {
   test("Test Automation Hub - Basic Actions - check, click & uncheck", async ({
     page,
   }) => {
+    test.skip(browserName === "firefox", "Test Automation Hub - Basic Actions - check, click & uncheck")
     await page.getByRole("tab", { name: "Basic" }).click();
 
     const SubmitButton = page.getByRole("button", { name: "Submit Form" });

@@ -21,7 +21,7 @@ test.describe("Test Automation Hub", () => {
     });
     await agreement.check();
     await expect(agreement).toBeChecked();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
 
     const subscription = page.getByRole("checkbox", {
       name: "Subscribe to newsletter",

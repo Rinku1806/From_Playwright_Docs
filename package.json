@@ -2,7 +2,10 @@
   "name": "from_playwright_docs",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "runAllCreated" : "npx playwright test --grep-invert '@recorded'",
+    "runAllRecorded" : "npx playwright test --grep-invert '@recorded'"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
