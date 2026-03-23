@@ -99,8 +99,8 @@ test('slow test', async ({ page }) => {
 });
 
 //When there are focused tests, only these tests run.
-
+/*
 test.only('focus this test', async ({ page }) => {
   // Run only focused tests in the entire project.
   console.log("This test is the only test which has been run");
-});
+});*/
