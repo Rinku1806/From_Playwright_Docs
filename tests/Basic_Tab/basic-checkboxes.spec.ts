@@ -4,7 +4,12 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Basic Elements Functional Testing', () => {
-  test('Checkboxes and Switches', async ({ page }) => {
+  test('Checkboxes and Switches', {
+  annotation: {
+    type: 'issue',
+    description: 'https://github.com/microsoft/playwright/issues/23180',
+  },
+},async ({ page }) => {
     await page.goto('https://gauravkhurana.com/test-automation-play/');
     await page.getByRole('tab', { name: 'Basic' }).click();
 

@@ -1,10 +1,15 @@
 // spec: basic-tab-test-plan.md
 // seed: tests/seed.spec.ts
 
-import { test, expect } from '@playwright/test';
+import { test, chromium, expect } from '@playwright/test';
 
 test.describe('Basic Elements Functional Testing', () => {
   test('Dropdown Selects Functionality', async ({ page }) => {
+  const browser = await chromium.launch();
+    test.info().annotations.push({
+    type: 'browser version',
+    description: browser.version(),
+  });
     await page.goto('https://gauravkhurana.com/test-automation-play/');
     await page.getByRole('tab', { name: 'Basic' }).click();
 

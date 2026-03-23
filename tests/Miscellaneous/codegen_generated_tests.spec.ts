@@ -6,7 +6,8 @@ import { test, expect, chromium } from "@playwright/test";
 
 var browserName = "chromium";
 
-test("Recorded by codegen test 1", {tag: '@recorded'}, async ({ page }) => {
+test("Recorded by codegen test 1", {
+    tag: ['@recorded', '@functionality'],}, async ({ page }) => {
   await page.goto("https://gauravkhurana.com/test-automation-play/");
   await page.getByRole("tab", { name: "Basic" }).click();
   await page.getByTestId("first-name-input").click();
@@ -98,8 +99,8 @@ test('slow test', async ({ page }) => {
 });
 
 //When there are focused tests, only these tests run.
-/*
+
 test.only('focus this test', async ({ page }) => {
   // Run only focused tests in the entire project.
   console.log("This test is the only test which has been run");
-});*/
+});
