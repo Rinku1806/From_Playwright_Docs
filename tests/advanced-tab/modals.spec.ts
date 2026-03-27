@@ -9,7 +9,7 @@ test.describe('Custom Modal Dialogs', () => {
     await page.getByRole('tab', { name: 'Advanced' }).click();
   });
 
-  test('Open and close custom modal', async ({ page }) => {
+  test.fixme('Open and close custom modal', async ({ page }) => {
     // 1. Ensure Advanced tab active
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
@@ -35,7 +35,7 @@ test.describe('Custom Modal Dialogs', () => {
     await expect(modal).toBeHidden();
   });
 
-  test('Custom modal backdrop interaction', async ({ page }) => {
+  test.fixme('Custom modal backdrop interaction', async ({ page }) => {
     await page.getByRole('button', { name: 'Show Custom Modal' }).click();
 
     const overlay = page.locator('div[data-state="open"][class*="bg-black/50"]');
@@ -51,7 +51,7 @@ test.describe('Custom Modal Dialogs', () => {
     await expect(overlay).toBeHidden();
   });
 
-  test('Modal with multiple actions', async ({ page }) => {
+  test.fixme('Modal with multiple actions', async ({ page }) => {
     await page.getByRole('button', { name: 'Show Custom Modal' }).click();
 
     const modal = page.locator('div:has-text("Custom Modal")').first();

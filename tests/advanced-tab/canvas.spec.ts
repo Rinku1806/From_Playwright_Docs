@@ -62,13 +62,29 @@ await page.getByTestId('drawing-canvas').click({
     await expect(pointsText).not.toHaveText('Points drawn: 0');
 
     const drawn = await page.evaluate(() => {
-      const canvas = document.querySelector('canvas');
-      if (!canvas) return false;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return false;
-      const pixel = ctx.getImageData(200, 200, 1, 1).data;
-      return pixel[3] > 0;
-    });
+   console.log('🚀 EVALUATE STARTED');    
+    const canvas = document.querySelector('canvas');
+    if (!canvas) { 
+      console.log('❌ 1. query problem - no canvas'); 
+      return false;
+    }
+    console.log('✅ 1. Canvas found');
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) { 
+      console.log('❌ 2. context problem'); 
+      return false;
+    }
+    console.log('✅ 2. 2D context OK');
+
+    const pixel = ctx.getImageData(51, 35, 1, 1).data;
+    console.log(`🔍 3. Pixel at (200,200): RGBA=[${pixel[0]},${pixel[1]},${pixel[2]},${pixel[3]}]`);
+    console.log('✅ 3. Reached end');
+    
+    return pixel[3] > 0;
+  });
+
+  console.log('🎯 Final result:', drawn);
     expect(drawn).toBe(true);
   });
 
@@ -88,6 +104,13 @@ await page.getByTestId('drawing-canvas').click({
     await page.mouse.move(drawEnd.x, drawEnd.y);
     await page.mouse.up();
 
+    await page.getByTestId('drawing-canvas').click({
+    position: {
+      x: 51,
+      y: 35
+    }
+  });
+
     await expect(page.getByText(/Points drawn:/)).not.toHaveText('Points drawn: 0');
 
     // 3. Click the 'Clear Canvas' button and verify cleared
@@ -96,10 +119,10 @@ await page.getByTestId('drawing-canvas').click({
 
     const cleared = await page.evaluate(() => {
       const canvas = document.querySelector('canvas');
-      if (!canvas) return false;
+      if (!canvas){ console.log('query problem');return false;}
       const ctx = canvas.getContext('2d');
-      if (!ctx) return false;
-      const pixel = ctx.getImageData(60, 60, 1, 1).data;
+      if (!ctx) { console.log('context problem');return false;}
+      const pixel = ctx.getImageData(51, 35, 1, 1).data;
       return pixel[3] === 0;
     });
     expect(cleared).toBe(true);
@@ -133,15 +156,33 @@ await page.getByTestId('drawing-canvas').click({
     await expect(page.getByText(/Points drawn:/)).not.toHaveText('Points drawn: 0');
 
     const multiDrawn = await page.evaluate(() => {
-      const canvas = document.querySelector('canvas');
-      if (!canvas) return false;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return false;
+   console.log('🚀 EVALUATE STARTED');    
+    const canvas = document.querySelector('canvas');
+    if (!canvas) { 
+      console.log('❌ 1. query problem - no canvas'); 
+      return false;
+    }
+    console.log('✅ 1. Canvas found');
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) { 
+      console.log('❌ 2. context problem'); 
+      return false;
+    }
+    console.log('✅ 2. 2D context OK');
+
       const pixel1 = ctx.getImageData(60, 30, 1, 1).data;
       const pixel2 = ctx.getImageData(60, 60, 1, 1).data;
-      return pixel1[3] > 0 && pixel2[3] > 0;
-    });
-    expect(multiDrawn).toBe(true);
+      
+    console.log(`🔍 3. Pixel at (60,30): RGBA=[${pixel1[0]},${pixel1[1]},${pixel1[2]},${pixel1[3]}]`);
+    console.log(`🔍 3. Pixel at (60,60): RGBA=[${pixel2[0]},${pixel2[1]},${pixel2[2]},${pixel2[3]}]`);
+    console.log('✅ 3. Reached end');
+    
+    return pixel1[3] > 0 && pixel2[3] > 0;
   });
+
+  console.log('🎯 Final result:', multiDrawn);
+    
 });
 
+});

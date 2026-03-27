@@ -15,18 +15,18 @@ test.describe('Charts & Graphs', () => {
     await expect(page.getByText('Bar Chart')).toBeVisible();
 
     // 2. Observe rendered bar chart
-    await expect(page.getByText('January')).toBeVisible();
-    await expect(page.getByText('Feb')).toBeVisible();
-    await expect(page.getByText('Mar')).toBeVisible();
-    await expect(page.getByText('Apr')).toBeVisible();
-    await expect(page.getByText('May')).toBeVisible();
+    await expect(page.getByText('January').first()).toBeVisible();
+    await expect(page.getByText('Feb').first()).toBeVisible();
+    await expect(page.getByText('Mar').first()).toBeVisible();
+    await expect(page.getByText('Apr').first()).toBeVisible();
+    await expect(page.getByText('May').first()).toBeVisible();
 
     // 3. Verify chart data matches expected values
-    await expect(page.getByText('400')).toBeVisible();
-    await expect(page.getByText('300')).toBeVisible();
-    await expect(page.getByText('600')).toBeVisible();
-    await expect(page.getByText('800')).toBeVisible();
-    await expect(page.getByText('500')).toBeVisible();
+    await expect(page.getByText('400').first()).toBeVisible();
+    await expect(page.getByText('300').first()).toBeVisible();
+    await expect(page.getByText('600').first()).toBeVisible();
+    await expect(page.getByText('800').first()).toBeVisible();
+    await expect(page.getByText('500').first()).toBeVisible();
   });
 
   test('Chart interactive features', async ({ page }) => {
@@ -34,14 +34,14 @@ test.describe('Charts & Graphs', () => {
     await expect(page.getByText('Bar Chart')).toBeVisible();
 
     // 2. Hover over different bars in the chart (using labels as bar proxies)
-    await page.getByText('January').hover();
-    await page.getByText('Feb').hover();
-    await page.getByText('Mar').hover();
+    await page.getByText('January').first().hover();
+    await page.getByText('Feb').first().hover();
+    await page.getByText('Mar').first().hover();
 
     // 3. Expect tooltip or data values to be visible (chart labels and values remain available)
-    await expect(page.getByText('400')).toBeVisible();
-    await expect(page.getByText('300')).toBeVisible();
-    await expect(page.getByText('600')).toBeVisible();
+    await expect(page.getByText('400').first()).toBeVisible();
+    await expect(page.getByText('300').first()).toBeVisible();
+    await expect(page.getByText('600').first()).toBeVisible();
   });
 
   test('Chart responsive behavior', async ({ page }) => {

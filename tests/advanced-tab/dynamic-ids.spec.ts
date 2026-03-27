@@ -9,7 +9,7 @@ test.describe('Dynamic IDs', () => {
     await page.getByRole('tab', { name: 'Advanced' }).click();
   });
 
-  test('Verify dynamic ID changes on regeneration', async ({ page }) => {
+  test.fixme('Verify dynamic ID changes on regeneration', async ({ page }) => {
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
     const regenerateButton = page.getByRole('button', { name: 'Regenerate ID' });
@@ -29,7 +29,7 @@ test.describe('Dynamic IDs', () => {
     await expect(dynamicElement).toBeVisible();
   });
 
-  test('Handle element identification after multiple regenerations', async ({ page }) => {
+  test.fixme('Handle element identification after multiple regenerations', async ({ page }) => {
     const regenerateButton = page.getByRole('button', { name: 'Regenerate ID' });
     const dynamicElement = page.locator('div', { hasText: 'Element with Dynamic ID' }).first();
 

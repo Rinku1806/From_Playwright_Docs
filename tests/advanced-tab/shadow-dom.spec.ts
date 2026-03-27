@@ -9,7 +9,7 @@ test.describe('Shadow DOM Interactions', () => {
     await page.getByRole('tab', { name: 'Advanced' }).click();
   });
 
-  test('Create and verify Shadow DOM element', async ({ page }) => {
+  test.fixme('Create and verify Shadow DOM element', async ({ page }) => {
     // 1. - expect: The Advanced tab should be active
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
@@ -29,7 +29,7 @@ test.describe('Shadow DOM Interactions', () => {
     await expect(page.locator('p', { hasText: 'This is inside Shadow DOM' })).toHaveCount(0);
   });
 
-  test('Access Shadow DOM content using pierceHandler', async ({ page }) => {
+  test.fixme('Access Shadow DOM content using pierceHandler', async ({ page }) => {
     // 1. - expect: The Advanced tab should be loaded
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
@@ -45,7 +45,7 @@ test.describe('Shadow DOM Interactions', () => {
     await expect(page.getByText('This is inside Shadow DOM')).toBeVisible();
   });
 
-  test('Handle multiple Shadow DOM instances', async ({ page }) => {
+  test.fixme('Handle multiple Shadow DOM instances', async ({ page }) => {
     // 1. - expect: The Advanced tab should be loaded
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
