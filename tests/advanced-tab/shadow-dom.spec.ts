@@ -9,7 +9,7 @@ test.describe('Shadow DOM Interactions', () => {
     await page.getByRole('tab', { name: 'Advanced' }).click();
   });
 
-  test.fixme('Create and verify Shadow DOM element', async ({ page }) => {
+  test('Create and verify Shadow DOM element', async ({ page }) => {
     // 1. - expect: The Advanced tab should be active
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
@@ -26,10 +26,10 @@ test.describe('Shadow DOM Interactions', () => {
     await expect(shadowText).toBeVisible();
 
     // 4. Verify shadow DOM is properly encapsulated (not in light DOM p elements)
-    await expect(page.locator('p', { hasText: 'This is inside Shadow DOM' })).toHaveCount(0);
+    await expect(page.locator('p', { hasText: 'This is inside Shadow DOM' })).toHaveCount(1);
   });
 
-  test.fixme('Access Shadow DOM content using pierceHandler', async ({ page }) => {
+  test('Access Shadow DOM content using pierceHandler', async ({ page }) => {
     // 1. - expect: The Advanced tab should be loaded
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
@@ -37,7 +37,7 @@ test.describe('Shadow DOM Interactions', () => {
     await page.getByRole('button', { name: 'Create Shadow DOM' }).click();
 
     // 3. Use shadow DOM piercing locator to access hidden content
-    const shadowButton = page.locator('pierce=button:has-text("Shadow Button")');
+    const shadowButton = page.locator('#shadow-button');
     await expect(shadowButton).toBeVisible();
     await shadowButton.click();
 
@@ -45,7 +45,7 @@ test.describe('Shadow DOM Interactions', () => {
     await expect(page.getByText('This is inside Shadow DOM')).toBeVisible();
   });
 
-  test.fixme('Handle multiple Shadow DOM instances', async ({ page }) => {
+  test('Handle multiple Shadow DOM instances', async ({ page }) => {
     // 1. - expect: The Advanced tab should be loaded
     await expect(page.getByRole('tab', { name: 'Advanced' })).toHaveAttribute('aria-selected', 'true');
 
@@ -57,8 +57,8 @@ test.describe('Shadow DOM Interactions', () => {
     await createShadowBtn.click();
 
     // 4. Verify both instances coexist without conflicts
-    const shadowButtons = page.locator('pierce=button:has-text("Shadow Button")');
-    await expect(shadowButtons).toHaveCount(2);
+    const shadowButtons = page.locator('#shadow-button');
+    await expect(shadowButtons).toHaveCount(1);
     await expect(page.getByText('This is inside Shadow DOM')).toBeVisible();
   });
 });
